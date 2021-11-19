@@ -23,7 +23,7 @@ app.get("/api/compliment", (req, res) => {
 });
 
 //Get fortune
-app.get("/api/fortune", (req, res) => {
+app.get("/api/fortunes", (req, res) => {
   const fortunes = ["Follow the middle path. Neither extreme will make you happy",
 "Fortune Not Found: Abort, Retry, Ignore?",
 "Go take a rest, you deserve it.",
@@ -54,18 +54,22 @@ app.get("/api/animal", (req, res) => {
 })
 
 //Add favorite inspirational quote
+const quotes = [];
+
 app.post("/api/quote", (req, res) => {
-  console.log(req.body)
-  res.status(200).send(quote)
+  quotes.push(req.body.addQuote)
+  res.status(200).send(quotes)
 })
 
 
 //Edit inspirational quote
-app.put
+app.put("/api/quote", (req, res) => {
+  
+})
 
 //Delete inspirational quote
 app.delete ("/api/quote", (req, res) => {
-  
+
 })
 
 

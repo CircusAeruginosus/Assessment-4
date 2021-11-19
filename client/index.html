@@ -10,16 +10,19 @@
 
     <button id="animalButton">Get an animal sound</button>
 
+    
     <form>
-      <label for="quote">Add your favorite inspirational quote:</label> <br>
-      <input type="text" id="quote" name="quote" value=" " <br>
-      <button type="submit">Submit</button>
+      <label for="quote">Add your favorite inspirational quote:</label>
+      <input id="quote-input" type="text" placeholder="enter quote here" /> 
+      <button id="quote-submit">Submit</button>
     </form>
 
+ 
     <script src = "server/index.js"></script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+
       document.getElementById("complimentButton").onclick = function () {
         axios.get("http://localhost:4000/api/compliment/")
             .then(function (response) {
@@ -27,15 +30,20 @@
               alert(data);
             });
       };
-      document.getElementById("fortuneButton").onclick = function () {
-        axios
-        .get("http://localhost:4000/api/fortune/")
-        .then(function (response) {
-          const data = response.data;
-          alert(data)
-
+      
+//Get fortune
+        document.querySelector("#fortuneButton").addEventListener("click", () => {
+          axios
+          .get("http://localhost:4000/api/fortunes/")
+          .then(function (response) {
+            const data = response.data;
+            alert(data)
+          })
+          .catch(err => console.log(err));
         })
-      };
+
+//Get animal noise
+      
       document.getElementById("animalButton").onclick = function () {
         axios
         .get("http://localhost:4000/api/animal/")
@@ -45,18 +53,26 @@
         })
       };
 
+//Add inspirational quote
+
       function addQuote(event) {
         event.preventDefault()
         let inputField = document.querySelector("input")
+        let quoteSection = document.createElement("div")
         let quote = document.createElement("p")
         quote.textContent = inputField.value
-        body.appendChild(quote)
+        quoteSection.appendChild(quote)
         inputField.value = ""
         let deleteBtn = document.createElement("button")
         deleteBtn.addEventListener("click", deleteQuote)
         body.appendChild(deleteBtn)
       }
 
+      function deleteQuote(event) {
+        event.target.addQuote.remove()
+      }
+
+     
       axios
       .post("http://localhost:4000/api/quote/")
       .then( response =>
@@ -66,17 +82,33 @@
           console.log(error)
         })
 
-        
+//Edit inspirational quote
+axios
+.put("http://localhost:4000/api/quote")
+.then(response => {
+  
+})
+
+
+//Delete inspirational quote
         axios
         .delete("http://localhost:4000/api/quote")
-        .then( response => 
+        .then( response => {
         function deleteQuote(event){
         event.target.node.remove()
         })
           
-      
+     
+//Choose your favorite animal
+<label for ="animals">Choose your favorite animal:</label>
+<select name="animals" id="animals">
+  <option value="cat">cat</option>
+  <option value="dog">dog</option>
+  <option value="bird">bird</option>
+  <option value="rabbit">rabbit</option>
+  <option value="hamster">hamster</option>
+  </select>
         
-          
 
 
       
