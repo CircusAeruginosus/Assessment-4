@@ -74,7 +74,7 @@ app.post("/api/quote", (req, res) => {
 app.listen(4000, () => console.log("Server running on 4000"));
 
 
-//Favorite Movies List
+//Favorite Movie List
 // let movies = ["Hocus Pocus", "The Lost Boys", "Coco"...]
 // app.put("/api/movie/:title", (req, res) => {
 //   let existingTitle = req.params.title
